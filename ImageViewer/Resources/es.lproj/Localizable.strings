@@ -1,0 +1,19 @@
+/* 
+  Localizable.strings
+  ImageViewer
+
+  Created by Julio Collado on 2/8/21.
+  
+*/
+
+"error" = "Error";
+"dismiss" = "Salir";
+"album" = "álbum";
+"image" = "imagen";
+
+//Viewer
+"viewer.navigationBar.title" = "Visor de Imagenes";
+
+//Error
+"data.error" = "Lo sentimos, hubo un problema, póngase en contacto con nuestro equipo de soporte por correo electrónico news-corps-support@gmail.com.";
+"invalid.response.error" = "Lo sentimos, estamos enfrentando algunos problemas. ¿Podría intentarlo de nuevo más tarde? Si el problema persiste, háganoslo saber por correo electrónico a news-corps-support@gmail.com.";

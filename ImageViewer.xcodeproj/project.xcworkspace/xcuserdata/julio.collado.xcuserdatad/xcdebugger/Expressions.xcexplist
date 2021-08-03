@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "ImageViewerViewController.tableView(_:willDisplay:forRowAt:):ImageViewerViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "isFirstLoad">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ImageViewerViewModel.imageList.didset:ImageViewerViewModel.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "listener">
+            </PersistentString>
+            <PersistentString
+               value = "imageList">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>
