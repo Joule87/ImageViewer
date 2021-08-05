@@ -19,4 +19,10 @@ class URLSessionMock: URLSession {
             completionHandler(self.data, self.response, self.error)
         }
     }
+    
+    override func dataTask(with request: URLRequest, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTask {
+        return URLSessionDataTaskMock {
+            completionHandler(self.data, self.response, self.error)
+        }
+    }
 }

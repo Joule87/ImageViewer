@@ -13,6 +13,7 @@ class NetworkManagerTests: XCTestCase {
     private var networkManager: NetworkManager!
     private var session: URLSessionMock!
     private let url = URL(string: NetworkConfiguration.baseUrl!)!
+    private let request = HTTPRequest(method: .get, path: "photos")
     
     override func setUp() {
         session = URLSessionMock()
@@ -91,7 +92,7 @@ class NetworkManagerTests: XCTestCase {
                 XCTAssert(false)
             }
         }
-        networkManager.fetchObject(for: url, completionHandler: completion)
+        networkManager.fetchObject(for: request, completionHandler: completion)
     }
     
     func test_fetchObject_Error() {
@@ -109,7 +110,7 @@ class NetworkManagerTests: XCTestCase {
                 }
             }
         }
-        networkManager.fetchObject(for: url, completionHandler: completion)
+        networkManager.fetchObject(for: request, completionHandler: completion)
     }
     
     func test_fetchObject_dataNotFound() {
@@ -129,7 +130,7 @@ class NetworkManagerTests: XCTestCase {
                 }
             }
         }
-        networkManager.fetchObject(for: url, completionHandler: completion)
+        networkManager.fetchObject(for: request, completionHandler: completion)
     }
     
     func test_fetchObject_invalidResponse() {
@@ -149,7 +150,7 @@ class NetworkManagerTests: XCTestCase {
                 }
             }
         }
-        networkManager.fetchObject(for: url, completionHandler: completion)
+        networkManager.fetchObject(for: request, completionHandler: completion)
     }
     
     func test_fetchObject_decodeError() {
@@ -170,6 +171,6 @@ class NetworkManagerTests: XCTestCase {
                 }
             }
         }
-        networkManager.fetchObject(for: url, completionHandler: completion)
+        networkManager.fetchObject(for: request, completionHandler: completion)
     }
 }

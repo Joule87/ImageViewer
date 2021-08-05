@@ -41,6 +41,9 @@
 		86C29E1B26B627250055124B /* ConstantNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C29E1A26B627250055124B /* ConstantNetwork.swift */; };
 		86C29E2626B627CB0055124B /* ConstantFileName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C29E2526B627CB0055124B /* ConstantFileName.swift */; };
 		86C29E2B26B628040055124B /* ConstantFileType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C29E2A26B628040055124B /* ConstantFileType.swift */; };
+		86D7354326BB74F4003A6FDF /* HTTPRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D7354226BB74F4003A6FDF /* HTTPRequest.swift */; };
+		86D7354826BB77FD003A6FDF /* HTTPHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D7354726BB77FD003A6FDF /* HTTPHeader.swift */; };
+		86D7354D26BB781D003A6FDF /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D7354C26BB781D003A6FDF /* HTTPMethod.swift */; };
 		86F0CA5626B726400088621E /* URLSessionDataTaskMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F0CA5526B726400088621E /* URLSessionDataTaskMock.swift */; };
 		86F0CA5E26B726840088621E /* URLSessionMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F0CA5D26B726840088621E /* URLSessionMock.swift */; };
 		86F0CA6326B726FB0088621E /* NetworkManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F0CA6226B726FB0088621E /* NetworkManagerTests.swift */; };
@@ -105,6 +108,9 @@
 		86C29E1A26B627250055124B /* ConstantNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstantNetwork.swift; sourceTree = "<group>"; };
 		86C29E2526B627CB0055124B /* ConstantFileName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstantFileName.swift; sourceTree = "<group>"; };
 		86C29E2A26B628040055124B /* ConstantFileType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstantFileType.swift; sourceTree = "<group>"; };
+		86D7354226BB74F4003A6FDF /* HTTPRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPRequest.swift; sourceTree = "<group>"; };
+		86D7354726BB77FD003A6FDF /* HTTPHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPHeader.swift; sourceTree = "<group>"; };
+		86D7354C26BB781D003A6FDF /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		86F0CA5526B726400088621E /* URLSessionDataTaskMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionDataTaskMock.swift; sourceTree = "<group>"; };
 		86F0CA5D26B726840088621E /* URLSessionMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionMock.swift; sourceTree = "<group>"; };
 		86F0CA6226B726FB0088621E /* NetworkManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerTests.swift; sourceTree = "<group>"; };
@@ -305,6 +311,7 @@
 		863ECA2C26B4675100586FFC /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				86D7354126BB74B7003A6FDF /* HTTP */,
 				863ECA2D26B4676700586FFC /* NetworkConfiguration.swift */,
 				863ECA3226B467CE00586FFC /* NetworkManager.swift */,
 				864E114226B5FC8100E15BC1 /* NetworkError.swift */,
@@ -357,6 +364,16 @@
 				86C29E2A26B628040055124B /* ConstantFileType.swift */,
 			);
 			path = Constant;
+			sourceTree = "<group>";
+		};
+		86D7354126BB74B7003A6FDF /* HTTP */ = {
+			isa = PBXGroup;
+			children = (
+				86D7354226BB74F4003A6FDF /* HTTPRequest.swift */,
+				86D7354726BB77FD003A6FDF /* HTTPHeader.swift */,
+				86D7354C26BB781D003A6FDF /* HTTPMethod.swift */,
+			);
+			path = HTTP;
 			sourceTree = "<group>";
 		};
 		86F0CA5326B726160088621E /* NetworkSuiteTest */ = {
@@ -528,6 +545,7 @@
 				863ECA4126B46A9F00586FFC /* ImageModel.swift in Sources */,
 				860B301F26B57D150095A0EA /* TableViewCellAnimationType.swift in Sources */,
 				860B301726B57C7E0095A0EA /* TableViewCellAnimationFactory.swift in Sources */,
+				86D7354D26BB781D003A6FDF /* HTTPMethod.swift in Sources */,
 				86C05CF426B4C564005372A0 /* Box.swift in Sources */,
 				86FF8A0026BB6A5600FFC3A6 /* ImageViewerDataSourceManager.swift in Sources */,
 				863ECA4726B4906100586FFC /* ImageViewerRepository.swift in Sources */,
@@ -535,10 +553,12 @@
 				863ECA3326B467CE00586FFC /* NetworkManager.swift in Sources */,
 				863ECA1826B458B700586FFC /* ImageViewerViewModel.swift in Sources */,
 				863ECA2E26B4676700586FFC /* NetworkConfiguration.swift in Sources */,
+				86D7354826BB77FD003A6FDF /* HTTPHeader.swift in Sources */,
 				860B302426B57D330095A0EA /* TableViewCellAnimator.swift in Sources */,
 				86C29E1B26B627250055124B /* ConstantNetwork.swift in Sources */,
 				86C29E2B26B628040055124B /* ConstantFileType.swift in Sources */,
 				863EC9DB26B4563000586FFC /* SceneDelegate.swift in Sources */,
+				86D7354326BB74F4003A6FDF /* HTTPRequest.swift in Sources */,
 				86C29E2626B627CB0055124B /* ConstantFileName.swift in Sources */,
 				86324EEA26B6FA3B0011A2B6 /* AccessibilityIdentifier.swift in Sources */,
 			);
@@ -747,7 +767,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.newscorp.ImageViewer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SERVER_URL = "http://jsonplaceholder.typicode.com/photos";
+				SERVER_URL = "http://jsonplaceholder.typicode.com/";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -770,7 +790,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.newscorp.ImageViewer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SERVER_URL = "http://jsonplaceholder.typicode.com/photos";
+				SERVER_URL = "http://jsonplaceholder.typicode.com/";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

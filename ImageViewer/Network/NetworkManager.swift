@@ -8,7 +8,7 @@
 import Foundation
 
 protocol NetworkManagerInterface {
-    func fetchObject<T: Codable>(for url: URL, completionHandler: @escaping (Result<T, NetworkError>) -> Void)
+    func fetchObject<T: Codable>(for request: HTTPRequest, completionHandler: @escaping (Result<T, NetworkError>) -> Void)
     func fetchData(from url: URL, completion: @escaping (Result<Data, NetworkError>) -> Void)
 }
 
@@ -24,8 +24,13 @@ struct NetworkManager: NetworkManagerInterface {
     /// - Parameters:
     ///   - url: url object
     ///   - completion: handler called upon request completion
-    func fetchObject<T: Codable>(for url: URL, completionHandler: @escaping (Result<T, NetworkError>) -> Void) {
-        session.dataTask(with: url) { data, response , error in
+    func fetchObject<T: Codable>(for request: HTTPRequest, completionHandler: @escaping (Result<T, NetworkError>) -> Void) {
+        guard let urlRequest = getUrlRequest(from: request) else {
+            completionHandler(.failure(.invalidUrl))
+            return
+        }
+        
+        session.dataTask(with: urlRequest) { data, response , error in
             if let unwrappedError = error {
                 print("Fetch failed with error: \(unwrappedError.localizedDescription)")
                 DispatchQueue.main.async {
@@ -97,5 +102,24 @@ struct NetworkManager: NetworkManagerInterface {
                 completion(.success(data))
             }
         }.resume()
+    }
+}
+
+extension NetworkManager {
+    private func getUrlRequest(from request: HTTPRequest) -> URLRequest? {
+        let baseUrl = request.baseUrl
+        guard var urlComponents = URLComponents(string: baseUrl.absoluteString) else {
+            return nil
+        }
+        urlComponents.queryItems = request.queryItems
+        
+        guard let url = urlComponents.url?.appendingPathComponent(request.path) else {
+            return nil
+        }
+        var urlRequest = URLRequest(url: url)
+        urlRequest.httpMethod = request.method.rawValue
+        urlRequest.httpBody = request.body
+        
+        return urlRequest
     }
 }

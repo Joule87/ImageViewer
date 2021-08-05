@@ -12,6 +12,7 @@ enum NetworkError: Error {
     case invalidData
     case error(errorDescription: String)
     case decodingError
+    case invalidUrl
     
     var customDescription: String {
         switch self {
@@ -22,6 +23,8 @@ enum NetworkError: Error {
         case .error(errorDescription: let errorDescription):
             return errorDescription
         case .decodingError:
+            return "data.error".localized
+        case .invalidUrl:
             return "data.error".localized
         }
     }

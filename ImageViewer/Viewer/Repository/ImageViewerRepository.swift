@@ -19,12 +19,8 @@ class ImageViewerRepository: ImageViewerRepositoryInterface {
     }
     
     func requestImageList(completion: @escaping (Result<[ImageModel], NetworkError>) -> ()) {
-        guard let baseUrl = NetworkConfiguration.baseUrl,
-              let url = URL(string: baseUrl) else {
-            print("Invalid URL")
-            completion(.failure(.error(errorDescription: "data.error".localized)))
-            return
-        }
-        networkManager.fetchObject(for: url, completionHandler: completion)
+        let imageListPath = "photos"
+        let request = HTTPRequest(method: .get, path: imageListPath)
+        networkManager.fetchObject(for: request, completionHandler: completion)
     }
 }
