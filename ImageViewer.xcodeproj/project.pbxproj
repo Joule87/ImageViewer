@@ -44,6 +44,7 @@
 		86F0CA5626B726400088621E /* URLSessionDataTaskMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F0CA5526B726400088621E /* URLSessionDataTaskMock.swift */; };
 		86F0CA5E26B726840088621E /* URLSessionMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F0CA5D26B726840088621E /* URLSessionMock.swift */; };
 		86F0CA6326B726FB0088621E /* NetworkManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F0CA6226B726FB0088621E /* NetworkManagerTests.swift */; };
+		86FF8A0026BB6A5600FFC3A6 /* ImageViewerDataSourceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FF89FF26BB6A5600FFC3A6 /* ImageViewerDataSourceManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -107,6 +108,7 @@
 		86F0CA5526B726400088621E /* URLSessionDataTaskMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionDataTaskMock.swift; sourceTree = "<group>"; };
 		86F0CA5D26B726840088621E /* URLSessionMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionMock.swift; sourceTree = "<group>"; };
 		86F0CA6226B726FB0088621E /* NetworkManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerTests.swift; sourceTree = "<group>"; };
+		86FF89FF26BB6A5600FFC3A6 /* ImageViewerDataSourceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewerDataSourceManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -273,6 +275,7 @@
 		863ECA0F26B4567A00586FFC /* View */ = {
 			isa = PBXGroup;
 			children = (
+				86FF8A0426BB6B4B00FFC3A6 /* Manager */,
 				860B301526B57C470095A0EA /* Animation */,
 				8686A4FD26B5A6830049BC8F /* CustomUIView */,
 				860B303026B5885C0095A0EA /* Controller */,
@@ -372,6 +375,14 @@
 				86F0CA5D26B726840088621E /* URLSessionMock.swift */,
 			);
 			path = Util;
+			sourceTree = "<group>";
+		};
+		86FF8A0426BB6B4B00FFC3A6 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				86FF89FF26BB6A5600FFC3A6 /* ImageViewerDataSourceManager.swift */,
+			);
+			path = Manager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -518,6 +529,7 @@
 				860B301F26B57D150095A0EA /* TableViewCellAnimationType.swift in Sources */,
 				860B301726B57C7E0095A0EA /* TableViewCellAnimationFactory.swift in Sources */,
 				86C05CF426B4C564005372A0 /* Box.swift in Sources */,
+				86FF8A0026BB6A5600FFC3A6 /* ImageViewerDataSourceManager.swift in Sources */,
 				863ECA4726B4906100586FFC /* ImageViewerRepository.swift in Sources */,
 				86B6811E26B86264005ED579 /* String+Extension.swift in Sources */,
 				863ECA3326B467CE00586FFC /* NetworkManager.swift in Sources */,

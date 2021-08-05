@@ -15,11 +15,15 @@ class ImageViewerViewController: UIViewController {
             imageTableView.isAccessibilityElement = true
             imageTableView.accessibilityIdentifier = AccessibilityIdentifier.ImageViewerViewController.imageTableView
             registerTableViewCells()
+            imageTableView.dataSource = tableViewDataSourceManager
+            imageTableView.delegate = tableViewDataSourceManager
         }
     }
     
     //MARK: - Properties
-    var viewModel: ImageViewerViewModelInterface?
+    var viewModel: ImageViewerViewModelInterface? = ImageViewerViewModel()
+    var tableViewDataSourceManager: ImageViewerDataSourceManagerInterface = ImageViewerDataSourceManager()
+    
     private var isFirstLoad = true
     private let spinner: UIActivityIndicatorView = {
         let spinner = UIActivityIndicatorView(style: .gray)
@@ -32,7 +36,7 @@ class ImageViewerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "viewer.navigationBar.title".localized
-        viewModel = ImageViewerViewModel()
+        tableViewDataSourceManager.navigationController = navigationController
         addInitLoadingAnimation()
         setupRefreshControl()
         setBindToImageListUpdate()
@@ -45,7 +49,7 @@ class ImageViewerViewController: UIViewController {
             guard let self = self else {
                 return
             }
-            
+            self.tableViewDataSourceManager.imageList = self.viewModel?.imageList.value ?? []
             self.imageTableView.reloadData()
             
             self.removeInitLoadingAnimationIfNeeded()
@@ -109,58 +113,4 @@ class ImageViewerViewController: UIViewController {
         refreshControl.beginRefreshing()
         viewModel?.shouldRefresh = true
     }
-}
-
-//MARK: - ImageViewerViewModelDelegate
-extension ImageViewerViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        viewModel?.imageList.value.count ?? 0
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let viewModel = self.viewModel else {
-            return UITableViewCell()
-        }
-        
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: ImageDetailsTableViewCell.identifier) as? ImageDetailsTableViewCell else {
-            return UITableViewCell()
-        }
-        
-        let item = viewModel.imageList.value[indexPath.row]
-        cell.set(url: item.url, title: item.title, albumId: item.albumId, imageId: item.id)
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let imageStringUrl = viewModel?.imageList.value[indexPath.row].url else {
-            return
-        }
-        let imageDetailView = ImageDetailView(in: self.view)
-        imageDetailView.loadImage(from: imageStringUrl)
-        tableView.deselectRow(at: indexPath, animated: true)
-    }
-    
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        let animationFactory: CellAnimationFactoryInterface = TableViewCellAnimationFactory()
-        let animation = animationFactory.getAnimation(type: .fade, isFirstLoad: isFirstLoad)
-        
-        let animator: TableViewCellAnimatorInterface = TableViewCellAnimator(animation: animation)
-        animator.animate(cell: cell, at: indexPath, in: tableView)
-        
-        if isFirstLoad, tableView.isLastVisibleCell(at: indexPath) {
-            isFirstLoad = false
-        }
-    }
-    
-    func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
-        hideNavigationBarOnScrolling(scrollView)
-    }
-    
-    ///Hides navigation bar on scrolling down and shows it when scrolling up.
-    private func hideNavigationBarOnScrolling(_ scrollView: UIScrollView) {
-        let yAxisTranslation = scrollView.panGestureRecognizer.translation(in: scrollView).y
-        yAxisTranslation < 0 ? navigationController?.setNavigationBarHidden(true, animated: true) : navigationController?.setNavigationBarHidden(false, animated: true)
-    }
-    
-    
 }
