@@ -42,6 +42,7 @@ class ImageDetailView: UIView {
         button.backgroundColor = .clear
         button.layer.borderColor = UIColor.white.cgColor
         button.layer.borderWidth = 0.8
+        button.layer.cornerRadius = 10
         return button
     }()
     
