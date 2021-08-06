@@ -38,11 +38,11 @@ class ImageViewerDataSourceManager: NSObject, ImageViewerDataSourceManagerInterf
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let imageStringUrl = imageList[indexPath.row].url, let parentView = tableView.superview else {
+        guard let imageStringUrl = imageList[indexPath.row].url, let navController = navigationController else {
             return
         }
         
-        let imageDetailView = ImageDetailView(in: parentView)
+        let imageDetailView = ImageDetailView(in: navController.view)
         imageDetailView.loadImage(from: imageStringUrl)
         tableView.deselectRow(at: indexPath, animated: true)
     }
