@@ -31,6 +31,8 @@
 		863ECA4126B46A9F00586FFC /* ImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 863ECA4026B46A9F00586FFC /* ImageModel.swift */; };
 		863ECA4726B4906100586FFC /* ImageViewerRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 863ECA4626B4906100586FFC /* ImageViewerRepository.swift */; };
 		864CFD8F26B847030041D44A /* AccessibilityIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86324EE926B6FA3B0011A2B6 /* AccessibilityIdentifier.swift */; };
+		864DC9CA26CEF206007CC85A /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864DC9C926CEF206007CC85A /* ImageDownloader.swift */; };
+		864DC9D226CEFA48007CC85A /* ImageViewerPrefetchingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864DC9D126CEFA48007CC85A /* ImageViewerPrefetchingManager.swift */; };
 		864E114326B5FC8100E15BC1 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864E114226B5FC8100E15BC1 /* NetworkError.swift */; };
 		86709FD226B8D82000D02051 /* TableViewCellAnimatorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86709FD126B8D82000D02051 /* TableViewCellAnimatorTest.swift */; };
 		86709FD726B8DA5100D02051 /* TableViewCellAnimationFactoryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86709FD626B8DA5100D02051 /* TableViewCellAnimationFactoryTest.swift */; };
@@ -97,6 +99,8 @@
 		863ECA3826B4697200586FFC /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
 		863ECA4026B46A9F00586FFC /* ImageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageModel.swift; sourceTree = "<group>"; };
 		863ECA4626B4906100586FFC /* ImageViewerRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewerRepository.swift; sourceTree = "<group>"; };
+		864DC9C926CEF206007CC85A /* ImageDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloader.swift; sourceTree = "<group>"; };
+		864DC9D126CEFA48007CC85A /* ImageViewerPrefetchingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewerPrefetchingManager.swift; sourceTree = "<group>"; };
 		864E114226B5FC8100E15BC1 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		86709FD126B8D82000D02051 /* TableViewCellAnimatorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCellAnimatorTest.swift; sourceTree = "<group>"; };
 		86709FD626B8DA5100D02051 /* TableViewCellAnimationFactoryTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCellAnimationFactoryTest.swift; sourceTree = "<group>"; };
@@ -337,6 +341,14 @@
 			path = Repository;
 			sourceTree = "<group>";
 		};
+		864DC9C826CEF1F9007CC85A /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				864DC9C926CEF206007CC85A /* ImageDownloader.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
 		8686A4FD26B5A6830049BC8F /* CustomUIView */ = {
 			isa = PBXGroup;
 			children = (
@@ -348,6 +360,7 @@
 		86C05CF226B4C53A005372A0 /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				864DC9C826CEF1F9007CC85A /* Helper */,
 				86C29E1926B627090055124B /* Constant */,
 				863ECA3726B4696500586FFC /* Extension */,
 				86C05CF326B4C564005372A0 /* Box.swift */,
@@ -398,6 +411,7 @@
 			isa = PBXGroup;
 			children = (
 				86FF89FF26BB6A5600FFC3A6 /* ImageViewerDataSourceManager.swift */,
+				864DC9D126CEFA48007CC85A /* ImageViewerPrefetchingManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -540,6 +554,7 @@
 				8686A4FF26B5A6A80049BC8F /* ImageDetailView.swift in Sources */,
 				863EC9DD26B4563000586FFC /* ImageViewerViewController.swift in Sources */,
 				860B302926B57DAD0095A0EA /* UITableView+Extension.swift in Sources */,
+				864DC9D226CEFA48007CC85A /* ImageViewerPrefetchingManager.swift in Sources */,
 				863ECA2426B45CE400586FFC /* ImageDetailsTableViewCell.swift in Sources */,
 				863EC9D926B4563000586FFC /* AppDelegate.swift in Sources */,
 				863ECA4126B46A9F00586FFC /* ImageModel.swift in Sources */,
@@ -551,6 +566,7 @@
 				863ECA4726B4906100586FFC /* ImageViewerRepository.swift in Sources */,
 				86B6811E26B86264005ED579 /* String+Extension.swift in Sources */,
 				863ECA3326B467CE00586FFC /* NetworkManager.swift in Sources */,
+				864DC9CA26CEF206007CC85A /* ImageDownloader.swift in Sources */,
 				863ECA1826B458B700586FFC /* ImageViewerViewModel.swift in Sources */,
 				863ECA2E26B4676700586FFC /* NetworkConfiguration.swift in Sources */,
 				86D7354826BB77FD003A6FDF /* HTTPHeader.swift in Sources */,

@@ -17,12 +17,14 @@ class ImageViewerViewController: UIViewController {
             registerTableViewCells()
             imageTableView.dataSource = tableViewDataSourceManager
             imageTableView.delegate = tableViewDataSourceManager
+            imageTableView.prefetchDataSource = tableViewPrefetchManager
         }
     }
     
     //MARK: - Properties
     var viewModel: ImageViewerViewModelInterface? = ImageViewerViewModel()
     var tableViewDataSourceManager: ImageViewerDataSourceManagerInterface = ImageViewerDataSourceManager()
+    var tableViewPrefetchManager: ImageViewerPrefetchingInterface = ImageViewerPrefetchingManager()
     
     private var isFirstLoad = true
     private let spinner: UIActivityIndicatorView = {
@@ -49,7 +51,9 @@ class ImageViewerViewController: UIViewController {
             guard let self = self else {
                 return
             }
-            self.tableViewDataSourceManager.imageList = self.viewModel?.imageList.value ?? []
+            let imageList = self.viewModel?.imageList.value ?? []
+            self.tableViewDataSourceManager.imageList = imageList
+            self.tableViewPrefetchManager.imageList = imageList
             self.imageTableView.reloadData()
             
             self.removeInitLoadingAnimationIfNeeded()
