@@ -85,7 +85,7 @@ struct NetworkManager: NetworkManagerInterface {
     ///   - url: url object
     ///   - completion: handler called upon request completion
     func fetchData(from url: URL, completion: @escaping (Result<Data, NetworkError>) -> Void) {
-        session.dataTask(with: url) { data, _ , error in
+        let urlSessionDataTask = session.dataTask(with: url) { data, _ , error in
             if let error = error {
                 completion(.failure(.error(errorDescription: error.localizedDescription)))
                 return
@@ -101,7 +101,9 @@ struct NetworkManager: NetworkManagerInterface {
             DispatchQueue.main.async() {
                 completion(.success(data))
             }
-        }.resume()
+        }
+        urlSessionDataTask.priority = URLSessionTask.highPriority
+        urlSessionDataTask.resume()
     }
 }
 
