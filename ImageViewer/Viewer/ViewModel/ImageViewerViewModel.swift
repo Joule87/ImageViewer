@@ -10,8 +10,8 @@ import Foundation
 protocol ImageViewerViewModelInterface {
     var repository: ImageViewerRepositoryInterface { get set }
     
-    var imageList: Box<[ImageModel]> { get }
-    var errorDescription: Box<String?> { get }
+    var imageList: Observable<[ImageModel]> { get }
+    var errorDescription: Observable<String?> { get }
     
     var shouldRefresh: Bool { get set }
     
@@ -20,8 +20,8 @@ protocol ImageViewerViewModelInterface {
 class ImageViewerViewModel: ImageViewerViewModelInterface {
     
     var repository: ImageViewerRepositoryInterface
-    var imageList = Box<[ImageModel]>([])
-    var errorDescription: Box<String?> = Box(nil)
+    var imageList = Observable<[ImageModel]>([])
+    var errorDescription: Observable<String?> = Observable(nil)
     
     var shouldRefresh: Bool = false {
         didSet {

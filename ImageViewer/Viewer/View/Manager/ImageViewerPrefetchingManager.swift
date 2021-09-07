@@ -7,21 +7,21 @@
 
 import UIKit
 
-protocol ImageViewerPrefetchingInterface: UITableViewDataSourcePrefetching {
-    var imageList: [ImageModel] { get set }
-}
-
-class ImageViewerPrefetchingManager: NSObject, ImageViewerPrefetchingInterface {
-    var imageList: [ImageModel] = []
+class ImageViewerPrefetchingManager: NSObject, DataSourceInterface {
+    var data: [ImageModel] = []
     
     init(imageList: [ImageModel] = []) {
-        self.imageList = imageList
+        self.data = imageList
     }
     
+}
+
+//MARK: - UITableViewDataSourcePrefetching
+extension ImageViewerPrefetchingManager: UITableViewDataSourcePrefetching {
     func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
         let downloader = ImageDownloader()
         indexPaths.forEach({ item in
-            if let imageStringUrl = imageList[item.row].url {
+            if let imageStringUrl = data[item.row].url {
                 downloader.fetch(from: imageStringUrl)
             }
         })

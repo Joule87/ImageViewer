@@ -18,7 +18,6 @@ class ImageDetailView: UIView {
     
     private let slider: UISlider = {
         let slider = UISlider()
-        slider.tintColor = .lightGray
         slider.thumbTintColor = .white
         slider.translatesAutoresizingMaskIntoConstraints = false
         slider.addTarget(self, action: #selector(handleSliderChange), for: .valueChanged)

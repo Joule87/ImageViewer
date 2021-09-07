@@ -7,24 +7,29 @@
 
 import UIKit
 
-protocol ImageViewerDataSourceManagerInterface: UITableViewDataSource, UITableViewDelegate {
-    var imageList: [ImageModel] { get set }
-    var isFirstLoad: Bool { get set }
-    var navigationController: UINavigationController? { get set }
-}
-
-class ImageViewerDataSourceManager: NSObject, ImageViewerDataSourceManagerInterface {
-    var isFirstLoad: Bool = true
-    var imageList: [ImageModel] = []
+class ImageViewerDataSourceManager: NSObject, DataSourceInterface, Navigable {
+    var data: [ImageModel] = []
     weak var navigationController: UINavigationController?
+    private var isFirstLoad: Bool = true
     
     init(imageList: [ImageModel] = [], navigationController: UINavigationController? = nil) {
-        self.imageList = imageList
+        self.data = imageList
         self.navigationController = navigationController
     }
     
+    ///Hides navigation bar on scrolling down and shows it when scrolling up.
+    private func hideNavigationBarOnScrolling(_ scrollView: UIScrollView) {
+        guard let navigationController = self.navigationController else { return }
+        let yAxisTranslation = scrollView.panGestureRecognizer.translation(in: scrollView).y
+        yAxisTranslation < 0 ? navigationController.setNavigationBarHidden(true, animated: true) : navigationController.setNavigationBarHidden(false, animated: true)
+    }
+    
+}
+
+//MARK: - UITableViewDataSource, UITableViewDelegate
+extension ImageViewerDataSourceManager: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        imageList.count
+        data.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -32,13 +37,13 @@ class ImageViewerDataSourceManager: NSObject, ImageViewerDataSourceManagerInterf
             return UITableViewCell()
         }
         
-        let item = imageList[indexPath.row]
+        let item = data[indexPath.row]
         cell.set(url: item.url, title: item.title, albumId: item.albumId, imageId: item.id)
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let imageStringUrl = imageList[indexPath.row].url, let navController = navigationController else {
+        guard let imageStringUrl = data[indexPath.row].url, let navController = navigationController else {
             return
         }
         
@@ -62,12 +67,4 @@ class ImageViewerDataSourceManager: NSObject, ImageViewerDataSourceManagerInterf
     func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
         hideNavigationBarOnScrolling(scrollView)
     }
-    
-    ///Hides navigation bar on scrolling down and shows it when scrolling up.
-    private func hideNavigationBarOnScrolling(_ scrollView: UIScrollView) {
-        guard let navigationController = self.navigationController else { return }
-        let yAxisTranslation = scrollView.panGestureRecognizer.translation(in: scrollView).y
-        yAxisTranslation < 0 ? navigationController.setNavigationBarHidden(true, animated: true) : navigationController.setNavigationBarHidden(false, animated: true)
-    }
-    
 }

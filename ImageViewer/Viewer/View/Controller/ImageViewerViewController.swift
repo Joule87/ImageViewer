@@ -7,6 +7,14 @@
 
 import UIKit
 
+struct DataSourceAnimatableManager<M: DataSourceInterface, Navigable> {
+    var manager: M
+}
+
+struct DataSourceManager<M: DataSourceInterface> {
+    var manager: M
+}
+
 class ImageViewerViewController: UIViewController {
     
     //MARK: - IBOutlets
@@ -15,16 +23,17 @@ class ImageViewerViewController: UIViewController {
             imageTableView.isAccessibilityElement = true
             imageTableView.accessibilityIdentifier = AccessibilityIdentifier.ImageViewerViewController.imageTableView
             registerTableViewCells()
-            imageTableView.dataSource = tableViewDataSourceManager
-            imageTableView.delegate = tableViewDataSourceManager
-            imageTableView.prefetchDataSource = tableViewPrefetchManager
+            imageTableView.dataSource = tableViewDataSourceManager.manager
+            imageTableView.delegate = tableViewDataSourceManager.manager
+            imageTableView.prefetchDataSource = tableViewPrefetchManager.manager
         }
     }
     
     //MARK: - Properties
     var viewModel: ImageViewerViewModelInterface? = ImageViewerViewModel()
-    var tableViewDataSourceManager: ImageViewerDataSourceManagerInterface = ImageViewerDataSourceManager()
-    var tableViewPrefetchManager: ImageViewerPrefetchingInterface = ImageViewerPrefetchingManager()
+    
+    var tableViewDataSourceManager: DataSourceAnimatableManager = DataSourceAnimatableManager<ImageViewerDataSourceManager, Navigable>(manager: ImageViewerDataSourceManager())
+    var tableViewPrefetchManager: DataSourceManager = DataSourceManager<ImageViewerPrefetchingManager>(manager: ImageViewerPrefetchingManager())
     
     private var isFirstLoad = true
     private let spinner: UIActivityIndicatorView = {
@@ -38,7 +47,7 @@ class ImageViewerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "viewer.navigationBar.title".localized
-        tableViewDataSourceManager.navigationController = navigationController
+        tableViewDataSourceManager.manager.navigationController = navigationController
         addInitLoadingAnimation()
         setupRefreshControl()
         setBindToImageListUpdate()
@@ -52,8 +61,8 @@ class ImageViewerViewController: UIViewController {
                 return
             }
             let imageList = self.viewModel?.imageList.value ?? []
-            self.tableViewDataSourceManager.imageList = imageList
-            self.tableViewPrefetchManager.imageList = imageList
+            self.tableViewDataSourceManager.manager.data = imageList
+            self.tableViewPrefetchManager.manager.data = imageList
             self.imageTableView.reloadData()
             
             self.removeInitLoadingAnimationIfNeeded()

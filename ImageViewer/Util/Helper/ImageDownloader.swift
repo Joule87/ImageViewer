@@ -12,6 +12,9 @@ protocol Downloadable {
 }
 
 struct ImageDownloader: Downloadable {
+    
+    var networkManager: NetworkManagerInterface = NetworkManager()
+    
     /// Download image from given urlString and cache it using urlString as a key.
     /// - Parameters:
     ///   - urlSting: String URL
@@ -27,7 +30,7 @@ struct ImageDownloader: Downloadable {
             return
         }
         
-        NetworkManager().fetchData(from: url) { result in
+        networkManager.fetchData(from: url) { result in
             switch result {
             case .success(let data):
                 guard let imageToCache = UIImage(data: data) else {
