@@ -16,10 +16,10 @@ For this small project the native MVC architecture is perfect, it's the simplest
     * Network: contains the networking layer code
     * Launch: App init managers
     *  Viewer
-        * View: contains custom UIViews, storyboards and table cells
-        * Model: contains the apps models
-        * Repository: contains any logic regarding to local persistency or network service calls
-        * Controller: contains the view controllers
+        * Model: contains the domain model
+        * View: contains custom UIViews, storyboards, view controllers and table cells
+        * ViewModel: exposes all data streams which are relevant to the View. Moreover, it servers as a link between the Model and the View.
+            * Repository: contains any logic regarding to local persistency or network service calls
 * ImageViewerTests: Contains the unit tests
 * ImageViewerUITests: Contains the ui tests
 

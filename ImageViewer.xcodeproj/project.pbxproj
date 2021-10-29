@@ -250,7 +250,6 @@
 		863ECA0B26B4564200586FFC /* Viewer */ = {
 			isa = PBXGroup;
 			children = (
-				863ECA4526B4904700586FFC /* Repository */,
 				863ECA1026B4568300586FFC /* ViewModel */,
 				863ECA0F26B4567A00586FFC /* View */,
 				863ECA0E26B4567400586FFC /* Model */,
@@ -302,6 +301,7 @@
 		863ECA1026B4568300586FFC /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				863ECA4526B4904700586FFC /* Repository */,
 				863ECA1726B458B700586FFC /* ImageViewerViewModel.swift */,
 			);
 			path = ViewModel;
